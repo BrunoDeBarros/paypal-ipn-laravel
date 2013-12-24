@@ -43,6 +43,8 @@ class PayPalIpn
         if ($listener->verifyIpn()) {
             return $this->store($request->getData());
         } else {
+            // Store it for now, just so that we do not lose it
+            return $this->store($request->getData());
             throw new InvalidIpnException("PayPal as responded with INVALID");
         }
     }
