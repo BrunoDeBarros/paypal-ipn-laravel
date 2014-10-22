@@ -58,7 +58,12 @@ class PayPalIpn
     {
         $config = Config::get('paypal-ipn-laravel::request_handler', 'auto');
         if ($config == 'curl' || ($config == 'auto' && is_callable('curl_init'))) {
-            return new CurlRequest(Input::all());
+            $curl = new CurlRequest(Input::all());
+            
+            # Disable SSL3 because of POODLE.
+            $curl->forceSSLv3(false);
+            
+            return $curl;
         } else {
             return new SocketRequest(Input::all());
         }
