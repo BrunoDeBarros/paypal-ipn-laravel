@@ -25,6 +25,5 @@
         "psr-0": {
             "LogicalGrape\\PayPalIpnLaravel\\": "src/"
         }
-    },
-    "minimum-stability": "dev"
+    }
 }
